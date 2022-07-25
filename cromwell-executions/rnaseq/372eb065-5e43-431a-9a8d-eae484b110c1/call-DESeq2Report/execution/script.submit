@@ -1,0 +1,20 @@
+#!/bin/bash
+# make sure there is no preexisting Docker CID file
+rm -f /mnt/c/Users/paulc/git/genomics-portfolio/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/docker_cid
+# run as in the original configuration without --rm flag (will remove later)
+docker run \
+  --cidfile /mnt/c/Users/paulc/git/genomics-portfolio/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/docker_cid \
+  -i \
+   \
+  --entrypoint /bin/bash \
+  -v /mnt/c/Users/paulc/git/genomics-portfolio/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report:/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report:delegated \
+  cowmoo/genomics-container@sha256:31079da13b411c33ab3618027d3c4e8e2fe603d30ff5612c24c14cbe932f99ff /cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/script
+
+# get the return code (working even if the container was detached)
+rc=$(docker wait `cat /mnt/c/Users/paulc/git/genomics-portfolio/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/docker_cid`)
+
+# remove the container after waiting
+docker rm `cat /mnt/c/Users/paulc/git/genomics-portfolio/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/docker_cid`
+
+# return exit code
+exit $rc

@@ -1,0 +1,3 @@
+#!/bin/bash
+'/bin/bash' '/mnt/c/Users/paulc/git/genomics-portfolio/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/script.submit' < /dev/null || { rc=$?; if [ "$rc" -gt "128" ]; then echo $rc; else echo -1; fi } > /mnt/c/Users/paulc/git/genomics-portfolio/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/rc &
+echo $!

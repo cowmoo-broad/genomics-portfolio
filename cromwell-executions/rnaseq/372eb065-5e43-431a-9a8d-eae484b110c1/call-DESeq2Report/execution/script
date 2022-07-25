@@ -1,0 +1,37 @@
+#!/bin/bash
+
+cd /cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution
+tmpDir=$(mkdir -p "/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/tmp.9d51a543" && echo "/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/tmp.9d51a543")
+chmod 777 "$tmpDir"
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+export HOME="$HOME"
+(
+cd /cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution
+
+)
+out372eb065="${tmpDir}/out.$$" err372eb065="${tmpDir}/err.$$"
+mkfifo "$out372eb065" "$err372eb065"
+trap 'rm "$out372eb065" "$err372eb065"' EXIT
+touch '/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/stdout' '/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/stderr'
+tee '/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/stdout' < "$out372eb065" &
+tee '/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/stderr' < "$err372eb065" >&2 &
+(
+cd /cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution
+
+
+Rscript -e "rmarkdown::render('/genomics-portfolio/reports/sample_report.Rmd')"
+)  > "$out372eb065" 2> "$err372eb065"
+echo $? > /cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution
+sync
+
+
+)
+mv /cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/rc.tmp /cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/rc

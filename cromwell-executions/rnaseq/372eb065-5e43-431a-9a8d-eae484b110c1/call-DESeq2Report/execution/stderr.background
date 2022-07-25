@@ -1,0 +1,4 @@
+mkfifo: cannot create fifo '/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/tmp.9d51a543/out.1': Operation not supported
+mkfifo: cannot create fifo '/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/tmp.9d51a543/err.1': Operation not supported
+/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/script: line 18: /cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/tmp.9d51a543/err.1: No such file or directory
+/cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/execution/script: line 17: /cromwell-executions/rnaseq/372eb065-5e43-431a-9a8d-eae484b110c1/call-DESeq2Report/tmp.9d51a543/out.1: No such file or directory
