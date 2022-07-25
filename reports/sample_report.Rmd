@@ -32,7 +32,7 @@ samples[,c("pop","center","run","condition")]
 You can also embed plots, for example:
 
 ```{r}
-samples2 <- read.table(file.path(".", "samples.txt"), head=FALSE)
+samples2 <- read.table(file.path("/", "samples.txt"), head=FALSE)
 samples2
 ```
 
