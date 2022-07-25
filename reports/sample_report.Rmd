@@ -33,12 +33,18 @@ You can also embed plots, for example:
 
 ```{r}
 samples2 <- read.table(file.path("/", "samples.txt"), head=TRUE)
-samples2
+files <- file.path(getwd(), samples2$Sample, "quant.sf")
+files
 ```
 
 ```{r}
-files <- file.path(getwd(), samples2$Sample, "quant.sf")
-files
+tx2gene <- read_csv(file.path(dir, "tx2gene.gencode.v27.csv"))
+txi <- tximport(files, type="salmon", tx2gene=tx2gene)
+```
+
+```{r}
+library("DESeq2")
+ddsTxi <- DESeqDataSetFromTximport(txi, colData = samples2, design = ~ condition)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
