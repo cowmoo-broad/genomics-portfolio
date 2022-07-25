@@ -37,7 +37,7 @@ samples2
 ```
 
 ```{r}
-files <- file.path(".", samples2$Sample, "quant.sf")
+files <- file.path(getwd(), samples2$Sample, "quant.sf")
 files
 ```
 
