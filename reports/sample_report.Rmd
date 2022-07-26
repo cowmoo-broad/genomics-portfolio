@@ -44,7 +44,11 @@ txi <- tximport(files, type="salmon", tx2gene=tx2gene)
 
 ```{r}
 library("DESeq2")
-ddsTxi <- DESeqDataSetFromTximport(txi, colData = samples2, design = ~ condition)
+dds <- DESeqDataSetFromTximport(txi, colData = samples2, design = ~ condition)
+
+dds <- DESeq(dds)
+res <- results(dds)
+res
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
