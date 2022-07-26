@@ -33,7 +33,7 @@ You can also embed plots, for example:
 
 ```{r}
 samples2 <- read.table(file.path("/", "samples.txt"), head=TRUE)
-files <- file.path(getwd(), samples2$Sample, "quant.sf")
+files <- file.path("/", samples2$Sample, "quant.sf")
 files
 ```
 
