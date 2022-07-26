@@ -39,16 +39,14 @@ files
 
 ```{r}
 tx2gene <- read_csv(file.path(dir, "tx2gene.gencode.v27.csv"))
-txi <- tximport(files, type="salmon", tx2gene=tx2gene)
+#txi <- tximport(files, type="salmon", tx2gene=tx2gene)
 ```
 
 ```{r}
-library("DESeq2")
-dds <- DESeqDataSetFromTximport(txi, colData = samples2, design = ~ condition)
+#library("DESeq2")
+#dds <- DESeqDataSetFromTximport(txi, colData = samples2, design = ~ condition)
 
-dds <- DESeq(dds)
-res <- results(dds)
-res
+#dds <- DESeq(dds)
+#res <- results(dds)
+#res
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
