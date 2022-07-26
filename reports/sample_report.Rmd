@@ -39,6 +39,8 @@ files
 
 The standard differential expression analysis steps are wrapped into a single function, DESeq. The estimation steps performed by this function are described below, in the manual page for ?DESeq and in the Methods section of the DESeq2 publication (Love, Huber, and Anders 2014).
 
+#### DESeq2 Data Frame
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library("DESeq2")
 
@@ -48,7 +50,10 @@ txi <- tximport(files, type="salmon", tx2gene=tx2gene)
 dds <- DESeqDataSetFromTximport(txi, colData = samples2, design = ~ Condition)
 dds <- DESeq(dds)
 res <- results(dds)
+res
 ```
+
+#### Summary Statistics
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 summary(res)
