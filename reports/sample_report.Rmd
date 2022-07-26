@@ -21,32 +21,29 @@ library("tximport")
 library("readr")
 library("tximportData")
 dir <- system.file("extdata", package="tximportData")
-samples <- read.table(file.path(dir,"samples.txt"), header=TRUE)
-samples$condition <- factor(rep(c("A","B"),each=3))
-rownames(samples) <- samples$run
-samples[,c("pop","center","run","condition")]
 ```
 
-## Including Plots
+## File Inputs
 
-You can also embed plots, for example:
+### Salmon Quantification Inputs
 
-```{r}
+```{r, echo=FALSE, message=FALSE}
 samples2 <- read.table(file.path("/", "samples.txt"), head=TRUE)
 files <- file.path("/", samples2$Sample, "quant.sf")
 files
 ```
 
-```{r}
+
+### Differential expression analysis
+```{r, echo=FALSE, message=FALSE}
+library("DESeq2")
+
 tx2gene <- read_csv(file.path(dir, "tx2gene.gencode.v27.csv"))
 txi <- tximport(files, type="salmon", tx2gene=tx2gene)
-```
 
-```{r}
-library("DESeq2")
 dds <- DESeqDataSetFromTximport(txi, colData = samples2, design = ~ Condition)
-
 dds <- DESeq(dds)
 res <- results(dds)
-res
+
+summary(res)
 ```
