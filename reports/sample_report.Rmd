@@ -38,7 +38,10 @@ files
 ```
 
 ```{r}
-tx2gene <- read_csv(file.path(dir, "tx2gene.gencode.v27.csv"))
+library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+k <- keys(txdb, keytype = "TXNAME")
+tx2gene <- select(txdb, k, "GENEID", "TXNAME")
 txi <- tximport(files, type="salmon", tx2gene=tx2gene)
 ```
 
