@@ -44,7 +44,7 @@ txi <- tximport(files, type="salmon", tx2gene=tx2gene)
 
 ```{r}
 library("DESeq2")
-dds <- DESeqDataSetFromTximport(txi, colData = samples2, design = ~ condition)
+dds <- DESeqDataSetFromTximport(txi, colData = samples2, design = ~ Condition)
 
 dds <- DESeq(dds)
 res <- results(dds)
